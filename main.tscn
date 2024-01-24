@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1i67kcd4lryo"]
+
+[ext_resource type="Texture2D" uid="uid://hjxdxeg1gv04" path="res://assets/kenney_top-down-shooter/Spritesheet/spritesheet_characters.png" id="1_7vglf"]
+[ext_resource type="Script" path="res://player.gd" id="1_kn11m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w71cl"]
+size = Vector2(37, 43)
+
+[node name="main" type="Node2D"]
+position = Vector2(26, 11)
+
+[node name="player" type="CharacterBody2D" parent="."]
+position = Vector2(277, 304)
+script = ExtResource("1_kn11m")
+
+[node name="sprite" type="Sprite2D" parent="player"]
+position = Vector2(10, 0)
+texture = ExtResource("1_7vglf")
+region_enabled = true
+region_rect = Rect2(0, 0, 56, 44)
+
+[node name="collision" type="CollisionShape2D" parent="player"]
+position = Vector2(1.5, -0.5)
+shape = SubResource("RectangleShape2D_w71cl")
