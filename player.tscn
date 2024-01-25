@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dndyi4t0jdx7v"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_x1s5q"]
+[ext_resource type="Texture2D" uid="uid://hjxdxeg1gv04" path="res://assets/kenney_top-down-shooter/Spritesheet/spritesheet_characters.png" id="2_v1s4k"]
+[ext_resource type="PackedScene" uid="uid://bts0qgn0b6vjo" path="res://bullet.tscn" id="2_x3eri"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w71cl"]
+size = Vector2(37, 43)
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(277, 304)
+script = ExtResource("1_x1s5q")
+Bullet = ExtResource("2_x3eri")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(10, 0)
+texture = ExtResource("2_v1s4k")
+region_enabled = true
+region_rect = Rect2(0, 0, 56, 44)
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, -0.5)
+shape = SubResource("RectangleShape2D_w71cl")
+
+[node name="EndOfGun" type="Marker2D" parent="."]
+position = Vector2(41, 9)

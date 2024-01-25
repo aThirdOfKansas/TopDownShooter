@@ -1,3 +1,6 @@
 res://main.tscn
 res://README.md
 res://player.gd
+res://player.tscn
+res://bullet.tscn
+res://bullet.gd
