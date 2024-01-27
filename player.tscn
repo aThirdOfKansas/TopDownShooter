@@ -24,3 +24,6 @@ shape = SubResource("RectangleShape2D_w71cl")
 
 [node name="EndOfGun" type="Marker2D" parent="."]
 position = Vector2(41, 9)
+
+[node name="GunDirection" type="Marker2D" parent="."]
+position = Vector2(46, 9)

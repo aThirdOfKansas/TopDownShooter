@@ -1,11 +1,15 @@
 extends Area2D
+class_name Bullet
 
-@export var speed: int = 1
+@export var speed: int = 5
+@onready var despawn_timer: Node = $DespawnTimer
+
 var direction := Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	despawn_timer.start()
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -16,3 +20,8 @@ func _physics_process(_delta):
 
 func set_direction(dir: Vector2):
 	direction = dir
+	rotation += direction.angle()
+
+
+func _on_despawn_timer_timeout():
+	queue_free()

@@ -17,3 +17,9 @@ shape = SubResource("RectangleShape2D_krj7i")
 texture = ExtResource("1_jo335")
 region_enabled = true
 region_rect = Rect2(198, 46, 4, 10)
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]
