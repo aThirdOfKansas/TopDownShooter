@@ -1,7 +1,5 @@
 res://player.tscn
-res://player.gd
-res://BulletManager.gd
-res://main.gd
-res://main.tscn
 res://bullet.gd
+res://player.gd
+res://main.tscn
 res://bullet.tscn
