@@ -25,3 +25,9 @@ func set_direction(dir: Vector2):
 
 func _on_despawn_timer_timeout():
 	queue_free()
+
+
+func _on_body_entered(body: Node) -> void:
+	if body.has_method("handle_hit"):
+		body.handle_hit()
+		queue_free()
