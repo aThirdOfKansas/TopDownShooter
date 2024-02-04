@@ -1,15 +1,13 @@
 extends CharacterBody2D
 class_name Player
 
-signal player_fired_bullet(bullet, position, direction)
-
 @export var speed: int = 100
 
 @onready var health_stat = $Health
 @onready var weapon = $Weapon
 
 func _ready() -> void:
-	weapon.connect("weapon_fired", Callable(self, "shoot"))
+	pass
 
 
 func get_input() -> Vector2:
@@ -32,10 +30,6 @@ func _physics_process(_delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_released("shoot"):
 		weapon.shoot()
-
-
-func shoot(bullet_instance, location: Vector2, direction: Vector2):
-	emit_signal("player_fired_bullet", bullet_instance, location, direction)
 
 
 func handle_hit():

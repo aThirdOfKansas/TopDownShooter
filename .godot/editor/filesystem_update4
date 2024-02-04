@@ -8,3 +8,5 @@ res://actors/enemy.gd
 res://weapons/bullet.tscn
 res://weapons/Weapon.gd
 res://weapons/weapon.tscn
+res://actors/AI.gd
+res://globals/GlobalSignals.gd
