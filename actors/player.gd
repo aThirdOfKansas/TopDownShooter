@@ -1,19 +1,15 @@
 extends CharacterBody2D
+class_name Player
 
 signal player_fired_bullet(bullet, position, direction)
 
 @export var speed: int = 100
-@export var Bullet: PackedScene
 
-var health: int = 100
-
-@onready var end_of_gun: Node = $EndOfGun
-@onready var gun_direction: Node = $GunDirection
-@onready var attack_cooldown: Node = $AttackCooldown
-@onready var animation_player: Node = $AnimationPlayer
+@onready var health_stat = $Health
+@onready var weapon = $Weapon
 
 func _ready() -> void:
-	pass
+	weapon.connect("weapon_fired", Callable(self, "shoot"))
 
 
 func get_input() -> Vector2:
@@ -35,20 +31,12 @@ func _physics_process(_delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_released("shoot"):
-		shoot()
+		weapon.shoot()
 
 
-func shoot():
-	if attack_cooldown.is_stopped():
-		var bullet_instance = Bullet.instantiate()
-		var direction = (gun_direction.global_position - end_of_gun.global_position).normalized()
-		emit_signal("player_fired_bullet", bullet_instance, end_of_gun.global_position, direction)
-		attack_cooldown.start()
-		animation_player.play("muzzle_flash")
-	else:
-		pass
+func shoot(bullet_instance, location: Vector2, direction: Vector2):
+	emit_signal("player_fired_bullet", bullet_instance, location, direction)
 
 
 func handle_hit():
-	health -= 20
-	print("player health: ", health)
+	health_stat.health -= 20

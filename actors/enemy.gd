@@ -1,11 +1,11 @@
 extends CharacterBody2D
 
-var health: int = 100
+@onready var health_stat: Node = $Health
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	pass
 
 func handle_hit():
-	health -= 20
-	if health <= 0:
+	health_stat.health -= 20
+	if health_stat.health <= 0:
 		queue_free()

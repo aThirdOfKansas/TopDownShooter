@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b1i67kcd4lryo"]
 
-[ext_resource type="PackedScene" path="res://actors/player.tscn" id="1_cimoe"]
+[ext_resource type="PackedScene" uid="uid://8avict8mmq25" path="res://actors/player.tscn" id="1_cimoe"]
 [ext_resource type="Script" path="res://main.gd" id="1_ky77q"]
 [ext_resource type="Script" path="res://BulletManager.gd" id="3_dfoiv"]
 [ext_resource type="PackedScene" uid="uid://dveer7v8g0q8" path="res://actors/enemy.tscn" id="3_uc0j3"]
