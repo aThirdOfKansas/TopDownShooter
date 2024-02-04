@@ -1,7 +1,7 @@
-res://main.tscn
+res://actors/player.tscn
 res://bullet.gd
-res://enemy.tscn
+res://main.tscn
 res://bullet.tscn
-res://player.tscn
-res://enemy.gd
-res://player.gd
+res://enemy.tscn
+res://actors/enemy.tscn
+res://weapons/bullet.tscn

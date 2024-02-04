@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dveer7v8g0q8"]
 
-[ext_resource type="Script" path="res://enemy.gd" id="1_k7jex"]
+[ext_resource type="Script" path="res://actors/enemy.gd" id="1_wro4c"]
 [ext_resource type="Texture2D" uid="uid://hjxdxeg1gv04" path="res://assets/kenney_top-down-shooter/Spritesheet/spritesheet_characters.png" id="3_n6w62"]
 [ext_resource type="Texture2D" uid="uid://b2x6in7fjs12i" path="res://assets/kenny_top-down-tanks-redux/Spritesheet/onlyObjects_default.png" id="4_14dpn"]
 
@@ -43,7 +43,7 @@ _data = {
 
 [node name="Enemy" type="CharacterBody2D"]
 position = Vector2(277, 304)
-script = ExtResource("1_k7jex")
+script = ExtResource("1_wro4c")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(10, 0)

@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dndyi4t0jdx7v"]
+[gd_scene load_steps=8 format=3 uid="uid://8avict8mmq25"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_x1s5q"]
+[ext_resource type="Script" path="res://actors/player.gd" id="1_h7nxn"]
+[ext_resource type="PackedScene" uid="uid://bts0qgn0b6vjo" path="res://weapons/bullet.tscn" id="2_dletl"]
 [ext_resource type="Texture2D" uid="uid://hjxdxeg1gv04" path="res://assets/kenney_top-down-shooter/Spritesheet/spritesheet_characters.png" id="2_v1s4k"]
-[ext_resource type="PackedScene" uid="uid://bts0qgn0b6vjo" path="res://bullet.tscn" id="2_x3eri"]
 [ext_resource type="Texture2D" uid="uid://b2x6in7fjs12i" path="res://assets/kenny_top-down-tanks-redux/Spritesheet/onlyObjects_default.png" id="4_v0uss"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w71cl"]
@@ -44,8 +44,8 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(277, 304)
-script = ExtResource("1_x1s5q")
-Bullet = ExtResource("2_x3eri")
+script = ExtResource("1_h7nxn")
+Bullet = ExtResource("2_dletl")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(10, 0)
