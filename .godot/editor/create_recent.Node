@@ -1,8 +1,0 @@
-CollisionShape2D
-Area2D
-Node2D
-Sprite2D
-AnimationPlayer
-Timer
-Marker2D
-CharacterBody2D
