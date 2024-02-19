@@ -1,12 +1,2 @@
-res://main.tscn
-res://main.gd
-res://actors/player.gd
 res://actors/player.tscn
-res://actors/Health.gd
-res://actors/enemy.tscn
-res://actors/enemy.gd
-res://weapons/bullet.tscn
-res://weapons/Weapon.gd
-res://weapons/weapon.tscn
-res://actors/AI.gd
-res://globals/GlobalSignals.gd
+res://actors/player.gd
