@@ -11,7 +11,8 @@ func _process(_delta):
 	pass
 
 
-func handle_bullet_spawned(bullet: Bullet, pos: Vector2, direction: Vector2):
+func handle_bullet_spawned(bullet: Bullet, team: int, pos: Vector2, direction: Vector2):
 	add_child(bullet)
+	bullet.team = team
 	bullet.global_position = pos
 	bullet.set_direction(direction)

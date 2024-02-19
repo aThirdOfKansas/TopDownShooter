@@ -4,10 +4,11 @@ class_name Player
 @export var speed: int = 100
 
 @onready var health_stat = $Health
-@onready var weapon = $Weapon
+@onready var weapon: Weapon = $Weapon
+@onready var team = $Team
 
 func _ready() -> void:
-	pass
+	weapon.initialize(team.team)
 
 
 func get_input() -> Vector2:
@@ -31,6 +32,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_released("shoot"):
 		weapon.shoot()
 
+
+func get_team() -> int:
+	return team.team
 
 func handle_hit():
 	health_stat.health -= 20

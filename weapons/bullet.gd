@@ -5,6 +5,7 @@ class_name Bullet
 @onready var despawn_timer: Node = $DespawnTimer
 
 var direction := Vector2.ZERO
+var team: int = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,5 +30,6 @@ func _on_despawn_timer_timeout():
 
 func _on_body_entered(body: Node) -> void:
 	if body.has_method("handle_hit"):
-		body.handle_hit()
+		if body.has_method("get_team") and body.get_team() != team:
+			body.handle_hit()
 		queue_free()

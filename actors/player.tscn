@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://8avict8mmq25"]
+[gd_scene load_steps=7 format=3 uid="uid://8avict8mmq25"]
 
 [ext_resource type="Script" path="res://actors/player.gd" id="1_h7nxn"]
 [ext_resource type="Texture2D" uid="uid://hjxdxeg1gv04" path="res://assets/kenney_top-down-shooter/Spritesheet/spritesheet_characters.png" id="2_v1s4k"]
 [ext_resource type="PackedScene" uid="uid://qka5j3ry37tj" path="res://weapons/weapon.tscn" id="4_b1krh"]
 [ext_resource type="PackedScene" uid="uid://cvero5kmhks23" path="res://actors/health.tscn" id="5_7fa4d"]
+[ext_resource type="PackedScene" uid="uid://cpasmfahxfnrj" path="res://team.tscn" id="5_b433h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w71cl"]
 size = Vector2(37, 43)
@@ -26,3 +27,5 @@ shape = SubResource("RectangleShape2D_w71cl")
 
 [node name="Weapon" parent="." instance=ExtResource("4_b1krh")]
 position = Vector2(25, 9)
+
+[node name="Team" parent="." instance=ExtResource("5_b433h")]

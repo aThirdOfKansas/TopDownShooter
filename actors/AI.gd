@@ -9,13 +9,13 @@ enum State {
 	ENGAGE
 }
 
-@onready var player_detection_zone = $PlayerDetectionZone
-@onready var patrol_timer = $PatrolTimer
+@onready var patrol_timer: Timer = $PatrolTimer
 
 var current_state = State.EMPTY: set = set_state
 var actor: CharacterBody2D = null
-var player: Player = null
+var target: CharacterBody2D = null
 var weapon: Weapon = null
+var team: int = -1
 
 #PATROL State
 var origin: Vector2 = Vector2.ZERO
@@ -28,10 +28,10 @@ func _ready() -> void:
 	set_state(State.PATROL)
 
 
-func initialize(init_actor, init_weapon: Weapon):
+func initialize(init_actor: CharacterBody2D, init_weapon: Weapon, init_team: int):
 	actor = init_actor
 	weapon = init_weapon
-
+	team = init_team
 
 # Shortest angle lerp to stop enemy from doing 360s
 #static func lerp_angle(from, to, weight):
@@ -55,13 +55,14 @@ func _physics_process(_delta):
 					actor_velocity = Vector2.ZERO
 					patrol_timer.start()
 		State.ENGAGE:
-			if player != null and weapon != null:
-				var angle_to_player = actor.global_position.direction_to(player.global_position).angle()
-				actor.rotate_toward(player.global_position)
-				if abs(actor.rotation - angle_to_player) < 0.1:
+			if target != null and weapon != null:
+				actor.rotate_toward(target.global_position)
+				var angle_to_target = actor.global_position.direction_to(target.global_position).angle()
+				var shoot_angle = abs(rad_to_deg(angle_to_target) - fmod(actor.rotation_degrees, 360))
+				if shoot_angle < 30 or shoot_angle > 330:
 					weapon.shoot()
 			else:
-				printerr("Enemy in ENGAGE state without player or weapon")
+				printerr("Enemy in ENGAGE state without target or weapon")
 		_:
 			printerr("Enemy in unhandled state.")
 
@@ -79,18 +80,6 @@ func set_state(new_state: State):
 	emit_signal("state_changed", current_state)
 
 
-func _on_player_detection_zone_body_entered(body):
-	if body.is_in_group("player"):
-		set_state(State.ENGAGE)
-		player = body
-
-
-func _on_player_detection_zone_body_exited(body):
-	if player and body == player:
-		set_state(State.PATROL)
-		player = null
-
-
 func _on_patrol_timer_timeout():
 	var patrol_range = 50
 	var random_x = randf_range(-patrol_range, patrol_range)
@@ -98,3 +87,15 @@ func _on_patrol_timer_timeout():
 	patrol_location = Vector2(random_x, random_y) + origin
 	patrol_location_reached = false
 	actor_velocity = actor.velocity_toward(patrol_location)
+
+
+func _on_detection_zone_body_entered(body):
+	if body.has_method("get_team") and body.get_team() != team:
+		set_state(State.ENGAGE)
+		target = body
+
+
+func _on_detection_zone_body_exited(body):
+	if target and body == target:
+		set_state(State.PATROL)
+		target = null

@@ -1,11 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dveer7v8g0q8"]
+[gd_scene load_steps=9 format=3 uid="uid://clcnif0wyy850"]
 
-[ext_resource type="Script" path="res://actors/enemy.gd" id="1_wro4c"]
-[ext_resource type="Texture2D" uid="uid://hjxdxeg1gv04" path="res://assets/kenney_top-down-shooter/Spritesheet/spritesheet_characters.png" id="3_n6w62"]
-[ext_resource type="PackedScene" uid="uid://cvero5kmhks23" path="res://actors/health.tscn" id="4_pb6ke"]
-[ext_resource type="PackedScene" uid="uid://qka5j3ry37tj" path="res://weapons/weapon.tscn" id="4_qgk0v"]
-[ext_resource type="Script" path="res://actors/AI.gd" id="5_3w4wp"]
-[ext_resource type="PackedScene" uid="uid://cpasmfahxfnrj" path="res://team.tscn" id="6_t6br8"]
+[ext_resource type="Script" path="res://actors/enemy.gd" id="1_3dwqm"]
+[ext_resource type="Texture2D" uid="uid://hjxdxeg1gv04" path="res://assets/kenney_top-down-shooter/Spritesheet/spritesheet_characters.png" id="2_tnrfg"]
+[ext_resource type="PackedScene" uid="uid://cvero5kmhks23" path="res://actors/health.tscn" id="3_ob5is"]
+[ext_resource type="PackedScene" uid="uid://qka5j3ry37tj" path="res://weapons/weapon.tscn" id="4_2mgn3"]
+[ext_resource type="Script" path="res://actors/AI.gd" id="5_e117k"]
+[ext_resource type="PackedScene" uid="uid://cpasmfahxfnrj" path="res://team.tscn" id="6_emiya"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w71cl"]
 size = Vector2(37, 43)
@@ -13,26 +13,26 @@ size = Vector2(37, 43)
 [sub_resource type="CircleShape2D" id="CircleShape2D_tufgi"]
 radius = 150.0
 
-[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
-script = ExtResource("1_wro4c")
+[node name="Ally" type="CharacterBody2D" groups=["enemy"]]
+script = ExtResource("1_3dwqm")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(2, 0)
-texture = ExtResource("3_n6w62")
+texture = ExtResource("2_tnrfg")
 region_enabled = true
-region_rect = Rect2(352, 176, 38, 44)
+region_rect = Rect2(390, 0, 34, 44)
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, -0.5)
 shape = SubResource("RectangleShape2D_w71cl")
 
-[node name="Health" parent="." instance=ExtResource("4_pb6ke")]
+[node name="Health" parent="." instance=ExtResource("3_ob5is")]
 
-[node name="Weapon" parent="." instance=ExtResource("4_qgk0v")]
+[node name="Weapon" parent="." instance=ExtResource("4_2mgn3")]
 position = Vector2(26, 9)
 
 [node name="AI" type="Node2D" parent="."]
-script = ExtResource("5_3w4wp")
+script = ExtResource("5_e117k")
 
 [node name="DetectionZone" type="Area2D" parent="AI"]
 visible = false
@@ -45,8 +45,7 @@ wait_time = 3.0
 one_shot = true
 autostart = true
 
-[node name="Team" parent="." instance=ExtResource("6_t6br8")]
-team = 1
+[node name="Team" parent="." instance=ExtResource("6_emiya")]
 
 [connection signal="body_entered" from="AI/DetectionZone" to="AI" method="_on_detection_zone_body_entered"]
 [connection signal="body_exited" from="AI/DetectionZone" to="AI" method="_on_detection_zone_body_exited"]

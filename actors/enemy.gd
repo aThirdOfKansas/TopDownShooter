@@ -5,14 +5,21 @@ extends CharacterBody2D
 @onready var health_stat: Node = $Health
 @onready var ai = $AI
 @onready var weapon = $Weapon
+@onready var team = $Team
 
 
 func _ready() -> void:
-	ai.initialize(self, weapon)
+	ai.initialize(self, weapon, team.team)
+	weapon.initialize(team.team)
 
 
 func _physics_process(_delta):
 	pass
+
+
+func get_team() -> int:
+	return team.team
+
 
 func handle_hit():
 	health_stat.health -= 20
